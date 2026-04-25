@@ -16,6 +16,11 @@ Rails.application.routes.draw do
 
   delete "/user_infos/:id", to: "user_infos#destroy"
 
+  get "/user_info/all-recipes", to: "user_info#all-recipes"
+  get "/user_info/disorders", to: "user_info#disorders"
+  get "/user_info/resources", to: "user_info#resources"
+  get "/user_info/about", to: "user_info#about"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
