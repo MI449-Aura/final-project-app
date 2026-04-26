@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   get "/user_info/about", to: "user_info#about"
   get "/user_info/disorder/:id", to: "user_info#disorder"
   get "/user_info/recipe/:id", to: "user_info#recipe"
+  get "/user_info/create-acc", to: "user_info#create-acc"
+  get "/user_info/sign-in", to: "user_info#sign-in"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
