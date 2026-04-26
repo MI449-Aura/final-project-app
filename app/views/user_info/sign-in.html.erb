@@ -163,9 +163,9 @@
     <div id="adult-mode" class="page-content">
     
         <%= form_with url: session_path do |form| %>
-        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-        <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-        <%= form.submit "Sign in" %>
+        <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address], class: "" %><br>
+        <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72, class: "" %><br>
+        <%= form.submit "Sign in", class: "" %>
         <% end %>
 
     </div>
