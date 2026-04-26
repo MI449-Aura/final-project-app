@@ -186,23 +186,10 @@ async function loadRecipeDetail() {
                 <div class="mx-auto mb-6 h-0.5 w-10 rounded bg-[#283618]"></div>
                 <div class="content-box"><div class="flex flex-col gap-6">${stepItems}</div></div>
             </section>
-            <button onclick="addRecipeToFavorite(${recipe.id})" class="mx-auto block rounded-lg bg-[#283618] px-6 py-3 text-white hover:bg-[#4a553c] focus:outline-none focus:ring-2 focus:ring-[#FEFAE0] focus:ring-offset-2 focus:ring-offset-[#283618]">
-                Add to Favorites
-            </button>
         `;
     } catch (e) {
         container.innerHTML = '<p class="text-center">Could not load recipe.</p>';
         console.error(e);
-    }
-}
-
-async function addRecipeToFavorite(recipeId) {
-
-    try {
-        Current.user.push(recipeId);
-    } catch (error) {
-        console.error('Error adding favorite:', error);
-        alert('Failed to add favorite.');
     }
 }
 
