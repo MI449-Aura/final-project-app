@@ -157,7 +157,6 @@
                 <p class="kids-text mt-4 max-w-xl text-base leading-relaxed drop-shadow-[0_6px_12px_rgba(0,0,0,0.9)] sm:text-lg">Fun, kid-friendly food ideas that build balanced habits one colorful plate at a time.</p>
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
                     <% if authenticated? %>
-                        <a href="/user_info/view-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#600000] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#7E0000] sm:text-base">View Account</a>
                         <%= button_to "Log out", session_path, class: "hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-transparent px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#FEFAE0]/15 sm:text-base", method: :delete if authenticated? %>
                     <% end %>
                     <% if !authenticated? %>
