@@ -156,8 +156,11 @@ async function loadRecipeDetail() {
     const recipeId = parseInt(new URLSearchParams(window.location.search).get('id'));
     try {
         const res = await fetch(RECIPES_JSON_URL);
+        console.log(res);
         const data = await res.json();
+        console.log(data);
         const recipe = data.recipes.find(r => r.id === recipeId);
+        console.log(recipe);
         if (!recipe) { container.innerHTML = '<p class="text-center">Recipe not found.</p>'; return; }
         document.title = recipe.name;
         const imageSrc = recipe.image || '.jpg';
