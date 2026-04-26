@@ -1,105 +1,106 @@
-const adultModeSection = document.getElementById('adult-mode');
-const kidsModeSection = document.getElementById('kids-mode');
-const pageBody = document.body;
+const initializeUtilities = () => {
+    const adultModeSection = document.getElementById('adult-mode');
+    const kidsModeSection = document.getElementById('kids-mode');
+    const pageBody = document.body;
 
-const modeToggle = document.getElementById('mode-toggle');
-const modeToggleThumb = document.getElementById('mode-toggle-thumb');
-const adultLabel = document.getElementById('adult-label');
-const kidsLabel = document.getElementById('kids-label');
+    const modeToggle = document.getElementById('mode-toggle');
+    const modeToggleThumb = document.getElementById('mode-toggle-thumb');
+    const adultLabel = document.getElementById('adult-label');
+    const kidsLabel = document.getElementById('kids-label');
 
-const navButtons = document.querySelectorAll('nav button');
-const hasToggleSwitcher = Boolean(modeToggle);
-const adultButton = hasToggleSwitcher ? null : navButtons[0];
-const kidsButton = hasToggleSwitcher ? null : navButtons[1];
+    const navButtons = document.querySelectorAll('nav button');
+    const hasToggleSwitcher = Boolean(modeToggle);
+    const adultButton = hasToggleSwitcher ? null : navButtons[0];
+    const kidsButton = hasToggleSwitcher ? null : navButtons[1];
 
-const applyMode = (mode) => {
-    const isKidsMode = mode === 'kids';
-    localStorage.setItem('mode', mode);
+    const applyMode = (mode) => {
+        const isKidsMode = mode === 'kids';
+        localStorage.setItem('mode', mode);
 
-    if (pageBody) {
-        pageBody.classList.toggle('kids-theme', isKidsMode);
-        pageBody.classList.toggle('adult-theme', !isKidsMode);
-    }
-
-    if (adultModeSection && kidsModeSection) {
-        adultModeSection.classList.toggle('hidden', isKidsMode);
-        kidsModeSection.classList.toggle('hidden', !isKidsMode);
-    }
-
-    if (modeToggle && modeToggleThumb) {
-        modeToggle.setAttribute('aria-checked', String(isKidsMode));
-        modeToggleThumb.classList.toggle('translate-x-8', isKidsMode);
-        modeToggle.style.backgroundColor = isKidsMode ? '#FDBA74' : '#65a30d';
-    }
-
-    if (adultLabel && kidsLabel) {
-        adultLabel.classList.toggle('opacity-100', !isKidsMode);
-        adultLabel.classList.toggle('opacity-60', isKidsMode);
-        kidsLabel.classList.toggle('opacity-100', isKidsMode);
-        kidsLabel.classList.toggle('opacity-60', !isKidsMode);
-    }
-};
-
-const savedMode = localStorage.getItem('mode') || 'adult';
-applyMode(savedMode);
-
-const recipeCategoryHeadings = Array.from(document.querySelectorAll('h2')).filter((heading) => {
-    return heading.textContent && heading.textContent.trim() === 'Recipe Categories';
-});
-
-recipeCategoryHeadings.forEach((heading) => {
-    const cardGrid = heading.nextElementSibling;
-    if (!cardGrid || !cardGrid.classList.contains('grid')) {
-        return;
-    }
-
-    const cards = cardGrid.querySelectorAll(':scope > div');
-    cards.forEach((card) => {
-        const imageLink = card.querySelector('a');
-        if (imageLink) {
-            imageLink.setAttribute('href', 'recipes.html');
+        if (pageBody) {
+            pageBody.classList.toggle('kids-theme', isKidsMode);
+            pageBody.classList.toggle('adult-theme', !isKidsMode);
         }
 
-        card.setAttribute('role', 'link');
-        card.setAttribute('tabindex', '0');
-        card.setAttribute('aria-label', 'Open recipe details');
+        if (adultModeSection && kidsModeSection) {
+            adultModeSection.classList.toggle('hidden', isKidsMode);
+            kidsModeSection.classList.toggle('hidden', !isKidsMode);
+        }
 
-        card.addEventListener('click', (event) => {
-            if (event.target && event.target.closest('a[href]')) {
-                return;
+        if (modeToggle && modeToggleThumb) {
+            modeToggle.setAttribute('aria-checked', String(isKidsMode));
+            modeToggleThumb.classList.toggle('translate-x-8', isKidsMode);
+            modeToggle.style.backgroundColor = isKidsMode ? '#FDBA74' : '#65a30d';
+        }
+
+        if (adultLabel && kidsLabel) {
+            adultLabel.classList.toggle('opacity-100', !isKidsMode);
+            adultLabel.classList.toggle('opacity-60', isKidsMode);
+            kidsLabel.classList.toggle('opacity-100', isKidsMode);
+            kidsLabel.classList.toggle('opacity-60', !isKidsMode);
+        }
+    };
+
+    const savedMode = localStorage.getItem('mode') || 'adult';
+    applyMode(savedMode);
+
+    const recipeCategoryHeadings = Array.from(document.querySelectorAll('h2')).filter((heading) => {
+        return heading.textContent && heading.textContent.trim() === 'Recipe Categories';
+    });
+
+    recipeCategoryHeadings.forEach((heading) => {
+        const cardGrid = heading.nextElementSibling;
+        if (!cardGrid || !cardGrid.classList.contains('grid')) {
+            return;
+        }
+
+        const cards = cardGrid.querySelectorAll(':scope > div');
+        cards.forEach((card) => {
+            const imageLink = card.querySelector('a');
+            if (imageLink) {
+                imageLink.setAttribute('href', 'recipes.html');
             }
-            window.location.href = 'recipes.html';
-        });
 
-        card.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
+            card.setAttribute('role', 'link');
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('aria-label', 'Open recipe details');
+
+            card.addEventListener('click', (event) => {
+                if (event.target && event.target.closest('a[href]')) {
+                    return;
+                }
                 window.location.href = 'recipes.html';
-            }
+            });
+
+            card.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    window.location.href = 'recipes.html';
+                }
+            });
         });
     });
-});
 
-if (modeToggle) {
-    modeToggle.addEventListener('click', () => {
-        const currentMode = localStorage.getItem('mode') || 'adult';
-        const nextMode = currentMode === 'adult' ? 'kids' : 'adult';
-        applyMode(nextMode);
-    });
-}
+    if (modeToggle) {
+        modeToggle.addEventListener('click', () => {
+            const currentMode = localStorage.getItem('mode') || 'adult';
+            const nextMode = currentMode === 'adult' ? 'kids' : 'adult';
+            applyMode(nextMode);
+        });
+    }
 
-if (adultButton) {
-    adultButton.addEventListener('click', () => {
-        applyMode('adult');
-    });
-}
+    if (adultButton) {
+        adultButton.addEventListener('click', () => {
+            applyMode('adult');
+        });
+    }
 
-if (kidsButton) {
-    kidsButton.addEventListener('click', () => {
-        applyMode('kids');
-    });
-}
-
+    if (kidsButton) {
+        kidsButton.addEventListener('click', () => {
+            applyMode('kids');
+        });
+    }
+};
 
 const RECIPES_JSON_URL = 'https://raw.githubusercontent.com/MI449-Aura/final-project-recipe-api/refs/heads/main/recpies.json';
 const DISORDERS_JSON_URL = 'https://raw.githubusercontent.com/MI449-Aura/final-project-recipe-api/refs/heads/main/eating-disorders.json';
@@ -184,10 +185,40 @@ async function loadRecipeDetail() {
                 <h2 class="mb-2 text-center text-2xl">Preparation Instructions</h2>
                 <div class="mx-auto mb-6 h-0.5 w-10 rounded bg-[#283618]"></div>
                 <div class="content-box"><div class="flex flex-col gap-6">${stepItems}</div></div>
-            </section>`;
+            </section>
+            <button onclick="addRecipeToFavorite(${recipe.id})" class="mx-auto block rounded-lg bg-[#283618] px-6 py-3 text-white hover:bg-[#4a553c] focus:outline-none focus:ring-2 focus:ring-[#FEFAE0] focus:ring-offset-2 focus:ring-offset-[#283618]">
+                Add to Favorites
+            </button>
+        `;
     } catch (e) {
         container.innerHTML = '<p class="text-center">Could not load recipe.</p>';
         console.error(e);
+    }
+}
+
+async function addRecipeToFavorite(recipeId) {
+    if (!window.currentUserEmail) {
+        alert('You must be logged in to add favorites.');
+        return;
+    }
+    try {
+        const response = await fetch('/user_infos/add_favorite', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-Token': window.csrfToken
+            },
+            body: JSON.stringify({ recipe_id: recipeId })
+        });
+        const data = await response.json();
+        if (data.success) {
+            alert('Recipe added to favorites!');
+        } else {
+            alert('Error: ' + data.error);
+        }
+    } catch (error) {
+        console.error('Error adding favorite:', error);
+        alert('Failed to add favorite.');
     }
 }
 
@@ -235,7 +266,21 @@ async function loadDisorderDetail() {
     }
 }
 
-loadRecipes();
-loadDisorders();
-loadRecipeDetail();
-loadDisorderDetail();
+const runUtilities = () => {
+    if (document.body.dataset.utilitiesInitialized === 'true') return;
+    document.body.dataset.utilitiesInitialized = 'true';
+
+    initializeUtilities();
+    loadRecipes();
+    loadDisorders();
+    loadRecipeDetail();
+    loadDisorderDetail();
+};
+
+if (document.readyState !== 'loading') {
+    runUtilities();
+} else {
+    document.addEventListener('DOMContentLoaded', runUtilities);
+}
+
+document.addEventListener('turbo:load', runUtilities);

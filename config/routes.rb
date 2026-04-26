@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   delete "/user_infos/:id", to: "user_infos#destroy"
 
+  post "/user_infos/add_favorite", to: "user_infos#add_favorite"
+
   get "/user_info/all-recipes", to: "user_info#all-recipes"
   get "/user_info/disorders", to: "user_info#disorders"
   get "/user_info/recipe", to: "user_info#recipe"
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
   get "/user_info/recipe/:id", to: "user_info#recipe"
   get "/user_info/create-acc", to: "user_info#create-acc"
   get "/user_info/sign-in", to: "user_info#sign-in"
+  get "/user_info/view-acc", to: "user_info#view-acc"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

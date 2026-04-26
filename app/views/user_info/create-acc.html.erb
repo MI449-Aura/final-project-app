@@ -164,7 +164,13 @@
     
         <h1>Sign Up</h1>
 
-        <%= form_with url: passwords_path do |form| %>
+        <% if @user&.errors&.any? %>
+            <div class="error-messages">
+                <%= @user.errors.full_messages.join(', ') %>
+            </div>
+        <% end %>
+
+        <%= form_with url: user_infos_path do |form| %>
             
         <div>
             <%= form.label :email_address %>
@@ -187,6 +193,6 @@
         <% end %>
 
     </div>
-    <script src="/utilities.js"></script>
+    <script src="/utilities.js" data-turbo-eval="true"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_25_202934) do
+ActiveRecord::Schema[8.1].define(version: 2026_04_26_164404) do
   create_table "create_user_data", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "r_one"
@@ -50,6 +50,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_25_202934) do
     t.integer "r_one"
     t.integer "r_three"
     t.integer "r_two"
+    t.integer "recipes"
     t.datetime "updated_at", null: false
     t.string "username"
   end
