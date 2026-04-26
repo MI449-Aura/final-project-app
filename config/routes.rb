@@ -43,5 +43,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "user_info#index"
-  resources :user_infos
 end
