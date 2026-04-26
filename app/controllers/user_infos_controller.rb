@@ -13,10 +13,14 @@ class UserInfosController < ApplicationController
     if @user.save
       @user_info = UserInfo.new(username: @user.email_address)
       @user_info.save
-      redirect_to new_session_path, notice: "Account created successfully. Please log in."
+      redirect_to "/user_info/sign-in", notice: "Account created successfully. Please log in."
     else
       render "user_info/create-acc", status: :unprocessable_entity
     end
+  rescue ActiveRecord::StatementInvalid => e
+    Rails.logger.error("User signup failed due to DB constraint: #{e.class} #{e.message}")
+    @user.errors.add(:base, "Account could not be created right now. Please try again.")
+    render "user_info/create-acc", status: :unprocessable_entity
   end
 
   def show

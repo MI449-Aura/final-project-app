@@ -12,6 +12,10 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  # VS Code/Codespaces preview may post from a different browser origin than request.base_url.
+  # Keep strict origin checks in production; relax only in development.
+  config.action_controller.forgery_protection_origin_check = false
+
   # Enable server timing.
   config.server_timing = true
 

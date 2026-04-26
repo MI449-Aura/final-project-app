@@ -10,23 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_04_27_000001) do
-  create_table "create_user_data", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "r_one"
-    t.integer "r_three"
-    t.integer "r_two"
-    t.datetime "updated_at", null: false
-    t.string "username"
-  end
-
-  create_table "saveds", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "recipe_id"
-    t.datetime "updated_at", null: false
-    t.string "username"
-  end
-
+ActiveRecord::Schema[8.1].define(version: 2026_04_27_010000) do
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "ip_address"
@@ -34,15 +18,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_27_000001) do
     t.string "user_agent"
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_sessions_on_user_id"
-  end
-
-  create_table "user_data", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.integer "r_one_id"
-    t.integer "r_three_id"
-    t.integer "r_two_id"
-    t.datetime "updated_at", null: false
-    t.string "username"
   end
 
   create_table "user_infos", force: :cascade do |t|
@@ -60,6 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_04_27_000001) do
     t.string "email_address", null: false
     t.string "password_digest", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
