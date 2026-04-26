@@ -105,7 +105,7 @@ const RECIPES_JSON_URL = 'https://raw.githubusercontent.com/MI449-Aura/final-pro
 const DISORDERS_JSON_URL = 'https://raw.githubusercontent.com/MI449-Aura/final-project-recipe-api/refs/heads/main/eating-disorders.json';
 
 function buildRecipeCard(recipe) {
-    const link = `recipe.html?id=${recipe.id}`;
+    const link = `/user_info/recipe?id=${recipe.id}`;
     const imageSrc = recipe.image || '.jpg';
     return `
         <div class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition-shadow hover:shadow-lg">
@@ -115,7 +115,7 @@ function buildRecipeCard(recipe) {
 }
 
 function buildDisorderCard(disorder) {
-    const link = `disorder.html?id=${disorder.id}`;
+    const link = `/user_info/disorder.html.erb?id=${disorder.id}`;
     const imageSrc = disorder.image || '.jpg';
     return `
         <div class="cursor-pointer overflow-hidden rounded-2xl bg-white shadow-md transition-shadow hover:shadow-lg">

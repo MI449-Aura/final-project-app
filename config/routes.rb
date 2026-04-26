@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get "/user_info/all-recipes", to: "user_info#all-recipes"
   get "/user_info/disorders", to: "user_info#disorders"
+  get "/user_info/recipe", to: "user_info#recipe"
+  get "/user_info/disorder", to: "user_info#disorder"
   get "/user_info/resources", to: "user_info#resources"
   get "/user_info/about", to: "user_info#about"
   get "/user_info/disorder/:id", to: "user_info#disorder"
