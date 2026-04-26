@@ -112,9 +112,67 @@
             padding: 1.5rem;
         }
 
+        .auth-card {
+            width: 100%;
+            max-width: 28rem;
+        }
+
+        .auth-input {
+            border: 1px solid rgba(40, 54, 24, 0.3);
+            background-color: #ffffff;
+            color: #283618;
+        }
+
+        .auth-input::placeholder {
+            color: rgba(40, 54, 24, 0.6);
+        }
+
+        .auth-error {
+            border-radius: 0.75rem;
+            border: 1px solid rgba(127, 29, 29, 0.35);
+            background-color: rgba(254, 226, 226, 0.75);
+            color: #7f1d1d;
+            padding: 0.75rem 1rem;
+        }
+
         body.kids-theme .content-box {
             border-color: rgba(255, 255, 255, 0.75);
             background-color: rgba(126, 0, 0, 0.45);
+        }
+
+        body.kids-theme .auth-card :is(h1, p, a, button, label) {
+            -webkit-text-stroke: 0;
+            paint-order: fill;
+            text-shadow: none;
+        }
+
+        body.kids-theme .auth-input {
+            border-color: rgba(255, 255, 255, 0.8);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        body.kids-theme .auth-input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        body.kids-theme .auth-submit {
+            background-color: #FDBA74;
+            color: #600000;
+        }
+
+        body.kids-theme .auth-submit:hover {
+            background-color: #fb923c;
+        }
+
+        body.kids-theme .auth-alt-link {
+            color: #fff9d6;
+        }
+
+        body.kids-theme .auth-error {
+            border-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(96, 0, 0, 0.45);
+            color: #ffffff;
         }
     </style>
 </head>
@@ -160,38 +218,41 @@
         </div>
     </nav>
 
-    <div id="adult-mode" class="page-content">
-    
-        <h1>Sign Up</h1>
+    <div id="adult-mode" class="page-content flex min-h-[calc(100vh-6.5rem)] items-center justify-center px-4 py-10 sm:px-6">
+        <section class="content-box auth-card">
+            <h1 class="mb-6 text-center text-3xl sm:text-4xl">Sign Up</h1>
 
-        <% if @user&.errors&.any? %>
-            <div class="error-messages">
-                <%= @user.errors.full_messages.join(', ') %>
-            </div>
-        <% end %>
+            <% if @user&.errors&.any? %>
+                <div class="auth-error mb-5 text-sm sm:text-base">
+                    <%= @user.errors.full_messages.join(', ') %>
+                </div>
+            <% end %>
 
-        <%= form_with url: user_infos_path do |form| %>
-            
-        <div>
-            <%= form.label :email_address %>
-            <%= form.email_field :email_address, required: true, autocomplete: "email" %>
-        </div>
+            <%= form_with url: user_infos_path, class: "space-y-4" do |form| %>
+                <div class="space-y-2">
+                    <%= form.label :email_address, class: "block text-sm font-semibold tracking-wide sm:text-base" %>
+                    <%= form.email_field :email_address, required: true, autocomplete: "email", autofocus: true, placeholder: "Enter your email address", class: "auth-input w-full rounded-xl px-4 py-3 text-base font-semibold focus:border-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-700/30" %>
+                </div>
 
-        <div>
-            <%= form.label :password %>
-            <%= form.password_field :password, required: true, autocomplete: "new-password" %>
-        </div>
+                <div class="space-y-2">
+                    <%= form.label :password, class: "block text-sm font-semibold tracking-wide sm:text-base" %>
+                    <%= form.password_field :password, required: true, autocomplete: "new-password", placeholder: "Create a password", class: "auth-input w-full rounded-xl px-4 py-3 text-base font-semibold focus:border-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-700/30" %>
+                </div>
 
-        <div>
-            <%= form.label :password_confirmation %>
-            <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
-        </div>
+                <div class="space-y-2">
+                    <%= form.label :password_confirmation, class: "block text-sm font-semibold tracking-wide sm:text-base" %>
+                    <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password", placeholder: "Confirm your password", class: "auth-input w-full rounded-xl px-4 py-3 text-base font-semibold focus:border-lime-700 focus:outline-none focus:ring-2 focus:ring-lime-700/30" %>
+                </div>
 
-        <div>
-            <%= form.submit "Create Account" %>
-        </div>
-        <% end %>
+                <div class="pt-2">
+                    <%= form.submit "Create Account", class: "auth-submit w-full rounded-xl bg-lime-700 px-4 py-3 text-base font-bold text-[#FEFAE0] shadow-sm transition-colors hover:bg-lime-800 focus:outline-none focus:ring-2 focus:ring-lime-700/40 focus:ring-offset-2 focus:ring-offset-[#FEFAE0]" %>
+                </div>
 
+                <p class="pt-1 text-center text-sm sm:text-base">
+                    <%= link_to "Log-in instead?", "/user_info/sign-in", class: "auth-alt-link underline decoration-2 underline-offset-4 transition-opacity hover:opacity-80" %>
+                </p>
+            <% end %>
+        </section>
     </div>
     <script src="/utilities.js" data-turbo-eval="true"></script>
 </body>
