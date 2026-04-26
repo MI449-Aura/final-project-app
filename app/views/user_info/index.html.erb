@@ -115,7 +115,6 @@
                 <p class="mt-4 max-w-xl text-base leading-relaxed drop-shadow-[0_6px_12px_rgba(0,0,0,0.9)] sm:text-lg">Practical nutrition guidance for adults with simple meals, trusted resources, and realistic healthy habits.</p>
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
                     <% if authenticated? %>
-                        <a href="/user_info/view-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#283618] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#355024] sm:text-base">View Account</a>
                         <%= button_to "Log out", session_path, class: "hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-transparent px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#FEFAE0]/20 sm:text-base", method: :delete if authenticated? %>
                     <% end %>
                     <% if !authenticated? %>
