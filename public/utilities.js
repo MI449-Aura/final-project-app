@@ -197,25 +197,9 @@ async function loadRecipeDetail() {
 }
 
 async function addRecipeToFavorite(recipeId) {
-    if (!window.currentUserEmail) {
-        alert('You must be logged in to add favorites.');
-        return;
-    }
+
     try {
-        const response = await fetch('/user_infos/add_favorite', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-Token': window.csrfToken
-            },
-            body: JSON.stringify({ recipe_id: recipeId })
-        });
-        const data = await response.json();
-        if (data.success) {
-            alert('Recipe added to favorites!');
-        } else {
-            alert('Error: ' + data.error);
-        }
+        Current.user.push(recipeId);
     } catch (error) {
         console.error('Error adding favorite:', error);
         alert('Failed to add favorite.');

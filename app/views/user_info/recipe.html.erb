@@ -101,7 +101,8 @@
     </main>
 
     <script>
-        window.currentUserEmail = '<%= Current.user&.email_address %>';
+        window.logged_in = <%= Current.user.present? %>;
+        console.log("Logged in:", window.logged_in);
         window.csrfToken = '<%= form_authenticity_token %>';
         window.recipeId = '<%= params[:id] %>';
     </script>

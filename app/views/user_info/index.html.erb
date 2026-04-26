@@ -114,11 +114,12 @@
                 <h1 class="text-4xl tracking-wide drop-shadow-[0_6px_16px_rgba(0,0,0,0.95)] sm:text-5xl">NUTRIFACT</h1>
                 <p class="mt-4 max-w-xl text-base leading-relaxed drop-shadow-[0_6px_12px_rgba(0,0,0,0.9)] sm:text-lg">Practical nutrition guidance for adults with simple meals, trusted resources, and realistic healthy habits.</p>
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <% if authenticated? do %>
-                        <a href="/user_info/view-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#600000] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#7E0000] sm:text-base">View Account</a>
+                    <% if authenticated? %>
+                        <a href="/user_info/view-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#283618] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#355024] sm:text-base">View Account</a>
+                        <%= button_to "Log out", session_path, class: "hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-transparent px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#FEFAE0]/20 sm:text-base", method: :delete if authenticated? %>
                     <% end %>
-                    <% if !authenticated? do %>
-                        <a href="/user_info/create-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#600000] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#7E0000] sm:text-base">Sign Up</a>
+                    <% if !authenticated? %>
+                        <a href="/user_info/create-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#283618] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#355024] sm:text-base">Sign Up</a>
                         <a href="/user_info/sign-in" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-transparent px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#FEFAE0]/20 sm:text-base">Login</a>
                     <% end %>
                 </div>
@@ -149,25 +150,24 @@
 
     <div id="kids-mode" class="hidden page-content">
         <section class="relative flex min-h-[72vh] items-center justify-center overflow-hidden">
-            <img src="<%= asset_path("LandingImageKids.png") %>"" alt="Kids healthy meal layout" class="absolute inset-0 h-full w-full object-cover">
+            <img src="<%= asset_path("LandingImageKids.png") %>" alt="Kids healthy meal layout" class="absolute inset-0 h-full w-full object-cover">
             <div class="absolute inset-0 bg-black/75"></div>
             <div class="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-6 text-center text-white">
                 <img src="<%= asset_path("FoodLogo.png") %>" alt="Food logo" class="mb-5 h-24 w-24 object-contain drop-shadow-[0_10px_16px_rgba(0,0,0,0.85)] sm:h-28 sm:w-28">
                 <h1 class="kids-hero-title text-4xl tracking-wide drop-shadow-[0_6px_16px_rgba(0,0,0,0.95)] sm:text-5xl">NUTRIFACT</h1>
                 <p class="kids-text mt-4 max-w-xl text-base leading-relaxed drop-shadow-[0_6px_12px_rgba(0,0,0,0.9)] sm:text-lg">Fun, kid-friendly food ideas that build balanced habits one colorful plate at a time.</p>
                 <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
-                    <% if authenticated? do %>
-                        <a href="/user_info/view-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#283618] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#355024] sm:text-base">View Account</a>
-                        <%= button_to "Log Out", session_path, method:delete if authenticated?, class: "hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-transparent px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#FEFAE0]/15 sm:text-base" %>
+                    <% if authenticated? %>
+                        <a href="/user_info/view-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#600000] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#7E0000] sm:text-base">View Account</a>
+                        <%= button_to "Log out", session_path, class: "hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-transparent px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#FEFAE0]/15 sm:text-base", method: :delete if authenticated? %>
                     <% end %>
-                    <% if !authenticated? do %>
-                        <a href="/user_info/create-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#283618] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#355024] sm:text-base">Sign Up</a>
+                    <% if !authenticated? %>
+                        <a href="/user_info/create-acc" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-[#600000] px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#7E0000] sm:text-base">Sign Up</a>
                         <a href="/user_info/sign-in" class="hero-auth-button rounded-full border-2 border-[#FEFAE0] bg-transparent px-7 py-3 text-sm text-[#FEFAE0] shadow-lg transition hover:bg-[#FEFAE0]/15 sm:text-base">Login</a>
                     <% end %>
                 </div>
             </div>
         </section>
-
         <div class="below-hero-copy kids-grid-lines">
             <div class="mx-auto max-w-3xl px-6 py-16 text-center">
                 <h2 class="kids-heading mb-6 text-4xl">Our Mission</h2>
