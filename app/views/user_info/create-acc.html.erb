@@ -127,10 +127,10 @@
                     <span class="site-title text-lg tracking-wide sm:text-xl">NUTRIFACT</span>
                 </a>
                 <ul class="hidden items-center gap-4 sm:flex lg:gap-6">
-                    <li><a href="all-recipies.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80 sm:text-lg">Recipes</a></li>
-                    <li><a href="disorders.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80 sm:text-lg">Disorders</a></li>
-                    <li><a href="resources.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80 sm:text-lg">Resources</a></li>
-                    <li><a href="about.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80 sm:text-lg">About</a></li>
+                    <li><%= link_to "Recipes", "/user_info/all-recipes", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
+                    <li><%= link_to "Disorders", "/user_info/disorders", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
+                    <li><%= link_to "Resources", "/user_info/resources", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
+                    <li><%= link_to "About", "/user_info/about", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
                 </ul>
             </div>
 
@@ -152,10 +152,10 @@
 
         <div class="border-t border-[#FEFAE0]/20 px-4 pb-4 pt-3 sm:hidden">
             <ul class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-                <li><a href="all-recipies.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80">Recipes</a></li>
-                <li><a href="disorders.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80">Disorders</a></li>
-                <li><a href="resources.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80">Resources</a></li>
-                <li><a href="about.html" class="nav-link mode-text text-base transition-opacity hover:opacity-80">About</a></li>
+                <li><%= link_to "Recipes", "/user_info/all-recipes", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
+                <li><%= link_to "Disorders", "/user_info/disorders", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
+                <li><%= link_to "Resources", "/user_info/resources", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
+                <li><%= link_to "About", "/user_info/about", class: "nav-link mode-text text-base transition-opacity hover:opacity-80" %></li>
             </ul>
         </div>
     </nav>
@@ -164,35 +164,25 @@
     
         <h1>Sign Up</h1>
 
-        <%= form_with model: @user, url: signup_path do |f| %>
-        <% if @user.errors.any? %>
-            <div>
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-            <ul>
-                <% @user.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-                <% end %>
-            </ul>
-            </div>
-        <% end %>
-
+        <%= form_with url: passwords_path do |form| %>
+            
         <div>
-            <%= f.label :email %><br>
-            <%= f.email_field :email %>
+            <%= form.label :email_address %>
+            <%= form.email_field :email_address, required: true, autocomplete: "email" %>
         </div>
 
         <div>
-            <%= f.label :password %><br>
-            <%= f.password_field :password %>
+            <%= form.label :password %>
+            <%= form.password_field :password, required: true, autocomplete: "new-password" %>
         </div>
 
         <div>
-            <%= f.label :password_confirmation %><br>
-            <%= f.password_field :password_confirmation %>
+            <%= form.label :password_confirmation %>
+            <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
         </div>
 
         <div>
-            <%= f.submit "Create Account" %>
+            <%= form.submit "Create Account" %>
         </div>
         <% end %>
 
