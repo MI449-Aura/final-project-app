@@ -141,9 +141,21 @@
         }
 
         body.kids-theme .auth-card :is(h1, p, a, button, label) {
-            -webkit-text-stroke: 0;
-            paint-order: fill;
-            text-shadow: none;
+            -webkit-text-stroke: 5px #000;
+            paint-order: stroke fill;
+            text-shadow:
+                0 4px 0 rgba(0, 0, 0, 0.99),
+                0 0px 34px rgba(0, 0, 0, 0.99);
+        }
+
+        body.kids-theme .auth-card :is(p, a, button, label) {
+            font-size: 1.3rem;
+            line-height: 1.2;
+        }
+
+        body.kids-theme .auth-card .auth-input {
+            font-size: 1.15rem;
+            line-height: 1.35;
         }
 
         body.kids-theme .auth-input {
